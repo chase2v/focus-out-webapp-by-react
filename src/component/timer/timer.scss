@@ -1,0 +1,74 @@
+.timer {
+	@at-root .clock {
+
+		canvas {
+			// background-color: #ccc;
+		}
+
+		.button {
+			position: absolute;
+			top: 300px;
+			left: 250px;
+			transform: translate(-50%, -50%);
+
+			font-size: 50px;
+			cursor: pointer;
+		}
+	}
+
+	@at-root .timer-info {
+
+		position: absolute;
+		top: 125px;
+		left: 500px;
+		width: 360px;
+
+		.info-card {
+			background-color: rgba(0, 0, 0, .9);
+			border-radius: 8px;
+			color: #fff;
+			font-family: "Microsoft Yahei UI";
+			text-align: center;
+			margin: 15px;
+
+			&.today-card {
+				clear: both;
+				padding: 10px;
+
+				div {
+					&:nth-child(1) {
+						font-size: 20px;
+						line-height: 40px;
+					}
+					&:nth-child(2) {
+						font-size: 20px;
+						line-height: 40px;
+						color: #ff0;
+					}
+				}
+			}
+
+			&.time-card {
+				width: 150px;
+				height: 210px;
+				float: left;
+
+				div {
+					&:nth-child(1) {
+						margin-top: 10px;
+						font-size: 50px;
+						line-height: 100px;
+					}
+					&:nth-child(2) {
+						font-size: 20px;
+						line-height: 40px;
+					}
+					&:nth-child(3) {
+						font-size: 30px;
+						line-height: 60px;
+					}
+				}
+			}
+		}
+	}
+}

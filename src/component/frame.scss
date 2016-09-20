@@ -1,0 +1,61 @@
+.frame {
+	width: 100%;
+	height: 100%;
+	
+	// 顶栏
+	@at-root .header {
+		position: fixed;
+		top: 0;
+
+		width: 100%;
+		height: 50px;
+		background-color: #fff;
+
+		border-bottom: 1px solid #ccc;
+
+		box-shadow: 0 2px 5px #bbb;
+		
+		// 链接
+		.link {
+			text-decoration: none;
+			color: #a5a5a5;
+		}
+
+		.active-link {
+			color: #f00;
+		}
+	
+		// 调整图标位置，大小
+		.iconfont {
+			position: relative;
+			top: 8px;
+
+			font-size: 30px;
+
+			&.icon-timer {
+				margin-left: 15px;
+			}
+			&.icon-graph {
+				margin-left: 15px;
+			}
+			&.icon-user {
+				float: right;
+				margin-right: 15px;
+			}
+			&.icon-setting {
+				float: right;	
+				margin-right: 15px;
+			}
+		}
+	}
+
+	// 内容区
+	@at-root .content {
+		margin-top: 50px;
+
+		@import './timer/timer';
+		@import './statistic/statistic';
+		@import './user/user';
+		@import './setting/setting';
+	}
+}
