@@ -1,0 +1,98 @@
+.statistic {
+	@at-root .statistic-frame {
+		position: relative;
+		width: 100%;
+		height: 500px;
+		overflow: hidden;
+
+		.button {
+			position: absolute;
+			font-size: 20px;
+			top: 200px;
+			cursor: pointer;
+			color: #ccc;
+			transition: all .5s ease-out;
+
+			&:hover {
+				color: #000;
+				transform: scale(1.2);
+			}
+
+			&:first-child {
+				left: 50px;
+			}
+			&:last-child {
+				right: 50px;
+			}
+		}
+		
+		.card-container {
+			position: relative;
+			top: 125px;
+			width: 631px;
+			margin: 0 auto;
+			overflow: hidden;
+
+			@at-root .card-statistic {
+				width: 175px;
+				height: 175px;
+
+				background-color: #fff;
+				border: 1px solid #ccc;
+				box-shadow: 2px 2px 5px #ccc;
+				border-radius: 50%;
+
+				position: relative;
+				display: inline-block;
+				margin-right: 50px;
+				// top: 100px;
+
+				text-align: center;
+				color: #a2a2a2;
+
+				cursor: pointer;
+				
+				transition: all .5s ease-in-out;
+
+				&:nth-child(3) {
+					margin-right: 0;
+				}
+
+				&:hover {
+					box-shadow: 0 0 10px #000;
+					border-color: #000;
+					color: #000;
+					transform: scale(1.2);
+				}
+
+				.icon {
+					font-size: 50px;
+					line-height: 100px;
+					padding-top: 10px;
+				}
+				.title {
+					font-size: 20px;
+				}
+
+				&.card-top-out {
+					animation: cardFly .5s ease-in 1 forwards;
+				}
+			}
+		}
+	}
+
+	@at-root .card-graph {
+		display: none;
+		width: 800px;
+		height: 450px;
+
+		background-color: #fff;
+		border: 1px solid #ccc;
+		box-shadow: 2px 2px 5px #ccc;
+
+		margin: 0 auto;
+		position: absolute;
+		top: 100px;
+	}
+	
+}

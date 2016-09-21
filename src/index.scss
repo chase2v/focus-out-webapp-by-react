@@ -1,7 +1,31 @@
 * {
 	margin: 0;
 	padding: 0;
+	text-decoration: none;
 }
 
 @import "./component/frame";
 @import "./font/font";
+
+// 全局变量
+
+// 全局样式
+.card {
+	border-radius: 8px;
+}
+
+html {
+	font-family: "Microsoft Yahei UI";
+}
+
+// 动画
+@keyframes rotateCard {
+	100% { transform: rotateY(180deg) translate(-100%);}
+}
+@keyframes rotateCardReverse {
+	0% { transform: rotateY(180deg) translate(-100%);}
+	100% { transform: rotateY(0deg);}
+}
+@keyframes cardFly {
+	100% { transform: translateY(-500px);}
+}

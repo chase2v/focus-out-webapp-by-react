@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const Clock = React.createClass({
+import playActionCreator from '../../action/playActionCreator';
 
-	componentDidMount: function () {
-		console.log('Timer组件即将进入！');
+class Clock extends Component {
+
+	componentDidMount () {
+		// console.log('Timer组件即将进入！');
 		
 		let cvs = this.refs.cvs,
 		     ctx = cvs.getContext('2d');
@@ -30,23 +33,31 @@ const Clock = React.createClass({
 		drawCircle(center, bigR, bigColor); // 绘制大圆
 		drawCircle(center, smallR, smallColor); // 绘制小圆
 
-	},
+	}
 
-	componentWillUnmount: () => {
-		console.log('Timer组件即将销毁！');
-	},
+	componentWillUnmount ()  {
+		// console.log('Timer组件即将销毁！');
+	}
 
-	render: () => {
+	render () {
 		return (
 			<div className="clock">
 				<canvas ref="cvs"></canvas>
-				<div className="button"><i className="iconfont icon-play"></i></div>
+				<div className="button" onClick={ () => this.clickHandler() }><i className="iconfont icon-play"></i></div>
 			</div>
 		)
-	},
+	}
+
+	/**
+	 * 播放按钮
+	 * @return {} 
+	 */
+	clickHandler (e) {
+		this.props.dispatch(playActionCreator());
+	}
 
 	// 时钟动画对象
-	animation: () => {
+	animation () {
 
 		let startPos,
 		     currentTime,
@@ -102,15 +113,25 @@ const Clock = React.createClass({
 			pause,
 			stop
 		}
-	},
+	}
 
 	// 执行动画对象
-	animationHandler: {
+	animationHandler () {
 		excute: () => {
 
 		}
 	}
 
-});
+}
 
-export default Clock;
+Clock.propTypes = {
+	playInfo: React.PropTypes.shape({
+		playState: React.PropTypes.string,
+		playType: React.PropTypes.string,
+		currentTimer: React.PropTypes.number
+	})
+}
+
+let clock = connect()(Clock);
+
+export default clock;

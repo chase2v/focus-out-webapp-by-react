@@ -1,9 +1,11 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 
-var test = function () {
+import data from '../reducer/handleInitData';
+import timerInfo from '../reducer/handleTimerPlay';
 
-}
-
-const store = createStore(test);
+let createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+let reducer = combineReducers({data, timerInfo});
+const store = createStoreWithMiddleware(reducer);
 
 export default store;

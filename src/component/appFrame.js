@@ -1,8 +1,16 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import Header from './header';
 
-export default class AppFrame extends Component {
+import initData from '../action/initData';
+
+class AppFrame extends Component {
+
+	componentDidMount () {
+		this.props.dispatch(initData());
+	}
+
 	render() {
 		return (
 			<div className="frame">
@@ -14,3 +22,7 @@ export default class AppFrame extends Component {
 		);
 	}
 }
+
+let appFrame = connect()(AppFrame);
+
+export default appFrame;

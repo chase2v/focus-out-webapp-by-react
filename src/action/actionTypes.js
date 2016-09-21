@@ -1,0 +1,2 @@
+const INITDATA = 'INITDATA';
+const STARTTIMER = 'STARTTIMER';

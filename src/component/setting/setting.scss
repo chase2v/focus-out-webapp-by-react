@@ -1,0 +1,88 @@
+.setting {
+
+	perspective: 1250px;
+
+	@at-root .card-setting {
+		width: 275px;
+		height: 375px;
+
+		border: 1px solid #ccc;
+		box-shadow: 2px 2px 5px #ccc;
+
+		margin: 0 auto;
+		position: relative;
+		top: 50px;
+
+		text-align: center;
+
+		transform-origin: 0 0;
+		transform-style: preserve-3d;
+
+		.card-reverse {
+			backface-visibility: hidden;
+			transform: rotateY(180deg);
+			cursor: pointer;
+
+			.title {
+				font-size: 25px;
+				line-height: 100px;
+
+				width: 70%;
+				border-bottom: 1px dashed #a2a2a2;
+
+				margin: 0 auto;
+			}
+
+			.introduction {
+				font-size: 18px;
+				line-height: 200px;
+			}
+		}
+
+		.card-positive {
+
+			backface-visibility: hidden;
+
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: cal(100%-35);
+			padding-top: 35px;
+			background-color: #fff;
+
+			.icon {
+				font-size: 50px;
+				line-height: 100px;
+			}
+
+			.options {
+				list-style: none;
+				width: 80%;
+				margin: 20px auto 0;
+
+				li {
+					padding: 15px 0;
+					border-bottom: 1px dashed #ccc;
+					cursor: pointer;
+
+					&:nth-child(2) {
+						border: none;
+					}
+
+					&:hover {
+						color: #f00;
+					}
+				}
+			}
+		}
+
+		&.card-rotate-enter {
+			animation: rotateCard .7s ease-out 1 forwards;
+			
+			box-shadow: -2px 2px 5px #ccc;
+		}
+		&.card-rotate-leave {
+			animation: rotateCardReverse .7s ease-out 1 forwards;
+		}
+	}
+}
