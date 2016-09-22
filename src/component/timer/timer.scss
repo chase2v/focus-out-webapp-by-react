@@ -14,6 +14,25 @@
 			font-size: 50px;
 			cursor: pointer;
 		}
+
+		.button-group {
+			display: none;
+			width: 200px;
+			height: 200px;
+			position: absolute;
+			top: 200px;
+			left: 150px;
+
+			div {
+				cursor: pointer;
+				text-align: center;
+				font-size: 80px;
+
+				&:first-child {
+					border-bottom: 1px solid #000;
+				}
+			}
+		}
 	}
 
 	@at-root .timer-info {

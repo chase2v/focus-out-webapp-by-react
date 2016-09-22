@@ -1,12 +1,8 @@
 import React from 'react';
 import INITDATA from '../action/actionTypes'
 
-const initData = () => {
-	// 在未建立本地数据库之前，直接返回模拟store
-	console.log('开始初始化数据！');
-	return  {
-		type: INITDATA,
-		data: {
+// 模拟的初始化数据
+const initUserInfo = {
 			currentUser: 1,
 			username: 'hajow',
 			statistics: [
@@ -299,7 +295,6 @@ const initData = () => {
 					]
 				}
 			],
-			currentTimer: 1,
 			timers: [
 				{
 					id: 1,
@@ -321,7 +316,12 @@ const initData = () => {
 				}
 			],
 		}
-	}	
+
+const handleUserInfo = (state = initUserInfo, action) => {
+	console.log('初始化数据前state为', state);
+	console.log('action为：', action);
+
+	return state;
 }
 
-export default initData;
+export default handleUserInfo;

@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Clock from './clock';
 import TimerInfo from './timerInfo';
 
-const Timer = React.createClass({
+class Timer extends Component {
 
-	render: () => {
-		return (
+	render () {
+
+		let currentTimer = this.props.playInfo.currentTimer,
+		     timer = this.props.timers[currentTimer - 1];
+
+		return (			
 			<div className="timer">
-				<Clock />
-				<TimerInfo />
+				<Clock dispatch={ this.props.dispatch } playInfo={ this.props.playInfo } timer={ timer } />
+				<TimerInfo timer={ timer } playInfo={ this.props.playInfo } />
 			</div>
 		)
 	}
 
-});
+}
 
 export default Timer;
