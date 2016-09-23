@@ -8,7 +8,7 @@ const StatisticCard = React.createClass({
 
 	render () {
 		return (
-			<div className="card-statistic" onClick={ this.clickHandler } ref="statisticCard">
+			<div className={ this.props.focus? 'card-statistic card-statistic-focus' : 'card-statistic' } onClick={ this.clickHandler } ref="statisticCard">
 				<div className="icon"><i className={ 'iconfont ' + this.props.data.iconClass }></i></div>
 				<div className="title">{ this.props.data.name }</div>
 			</div>

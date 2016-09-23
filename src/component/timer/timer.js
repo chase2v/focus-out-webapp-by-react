@@ -13,7 +13,7 @@ class Timer extends Component {
 		return (			
 			<div className="timer">
 				<Clock dispatch={ this.props.dispatch } playInfo={ this.props.playInfo } timer={ timer } />
-				<TimerInfo timer={ timer } playInfo={ this.props.playInfo } />
+				<TimerInfo dispatch={ this.props.dispatch } timer={ timer } playInfo={ this.props.playInfo } />
 			</div>
 		)
 	}

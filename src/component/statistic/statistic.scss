@@ -25,64 +25,77 @@
 				right: 50px;
 			}
 		}
-		
-		.card-container {
+		.card-frame {
 			position: relative;
-			top: 125px;
-			width: 631px;
-			margin: 0 auto;
+			top: 75px;
+			width: 636px;
+			height: 150px;
 			overflow: hidden;
-
-			@at-root .card-statistic {
-				width: 175px;
-				height: 175px;
-
-				background-color: #fff;
-				border: 1px solid #ccc;
-				box-shadow: 2px 2px 5px #ccc;
-				border-radius: 50%;
-
+			margin: 0 auto;
+			padding: 50px 50px;
+			
+			.card-container {
 				position: relative;
-				display: inline-block;
-				margin-right: 50px;
-				// top: 100px;
+				width: 2400px;
+				left: 243px;
 
-				text-align: center;
-				color: #a2a2a2;
+				@at-root .card-statistic {
+					width: 150px;
+					height: 150px;
 
-				cursor: pointer;
-				
-				transition: all .5s ease-in-out;
+					background-color: #fff;
+					border: 1px solid #ccc;
+					box-shadow: 2px 2px 5px #ccc;
+					border-radius: 50%;
 
-				&:nth-child(3) {
-					margin-right: 0;
-				}
+					position: relative;
+					display: inline-block;
+					margin-right: 90px;
 
-				&:hover {
-					box-shadow: 0 0 10px #000;
-					border-color: #000;
-					color: #000;
-					transform: scale(1.2);
-				}
+					text-align: center;
+					color: #a2a2a2;
 
-				.icon {
-					font-size: 50px;
-					line-height: 100px;
-					padding-top: 10px;
-				}
-				.title {
-					font-size: 20px;
-				}
+					cursor: pointer;
+					
+					transition: all .5s ease-in-out;
 
-				&.card-top-out {
-					animation: cardFly .5s ease-in 1 forwards;
+					&.card-statistic-focus {
+						transform: scale(1.2);
+
+						&:hover {
+							transform: scale(1.4);
+						}
+					}
+
+					&:last-child {
+						margin-right: 0;
+					}
+
+					&:hover {
+						box-shadow: 0 0 10px #000;
+						border-color: #000;
+						color: #000;
+						transform: scale(1.2);
+					}
+
+					.icon {
+						font-size: 50px;
+						line-height: 50px;
+						padding: 35px 0 5px 0;
+					}
+					.title {
+						font-size: 20px;
+					}
+
+					&.card-top-out {
+						animation: cardFly .5s ease-in 1 forwards;
+					}
 				}
 			}
 		}
 	}
 
 	@at-root .card-graph {
-		display: none;
 		width: 800px;
 		height: 450px;
 
@@ -90,8 +103,7 @@
 		border: 1px solid #ccc;
 		box-shadow: 2px 2px 5px #ccc;
 
-		margin: 0 auto;
-		position: absolute;
+		margin: 50px auto;
 		top: 100px;
 	}
 	

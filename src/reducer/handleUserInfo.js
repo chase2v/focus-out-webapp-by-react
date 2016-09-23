@@ -299,8 +299,8 @@ const initUserInfo = {
 				{
 					id: 1,
 					name: 'study',
-					work: 25,
-					break: 5
+					work: 1,
+					break: 1
 				},
 				{
 					id: 2,

@@ -5,7 +5,11 @@ import * as actionTypes from '../action/actionTypes';
 const initPlayInfo = {
 				playState: 'stop',
 				playType: 'work',
-				currentTimer: 1
+				currentTimer: 1,
+				work: 0,
+				break: 0,
+				workUnit: 'minutes',
+				breakUnit: 'minutes'
 			}
 
 const handlePlayInfo = (state = initPlayInfo, action) => {
@@ -18,11 +22,25 @@ const handlePlayInfo = (state = initPlayInfo, action) => {
 			return {
 				...state
 			}
+			break;
 		case actionTypes.SWITCHPLAYTYPE:
 			state.playType = 'work' ? 'break' : 'work';
 			return {
 				...state
 			}
+			break;
+		case actionTypes.UPDATETIME :
+			state = Object.assign(state, action.time);
+			return {
+				...state
+			}
+			break;
+		case actionTypes.UPDATEUNIT :
+			state = Object.assign(state, action.unit);
+			return {
+				...state
+			}
+			break;
 		default:
 	}
 	
