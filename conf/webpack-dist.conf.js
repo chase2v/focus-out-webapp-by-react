@@ -32,6 +32,10 @@ module.exports = {
         })
       },
       {
+        test: /\.(gif|jpg|png|woff|woff2|svg|eot|ttf|otf)\??.*$/,
+        loader: 'url-loader?limit=8192&name=[path][name].[ext]'
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loaders: [

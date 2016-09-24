@@ -1,5 +1,5 @@
 .statistic {
-	@at-root .statistic-frame {
+	@at-root .frame-statistic-card {
 		position: relative;
 		width: 100%;
 		height: 500px;
@@ -25,7 +25,7 @@
 				right: 50px;
 			}
 		}
-		.card-frame {
+		.card-show-frame {
 			position: relative;
 			top: 75px;
 			width: 636px;
@@ -34,7 +34,7 @@
 			margin: 0 auto;
 			padding: 50px 50px;
 			
-			.card-container {
+			.card-box {
 				position: relative;
 				width: 2400px;
 				left: 243px;
@@ -96,15 +96,67 @@
 	}
 
 	@at-root .card-graph {
-		width: 800px;
-		height: 450px;
+		position: relative;
+		width: 655px;
+		height: 382px;
+		padding: 0 25px;
 
 		background-color: #fff;
 		border: 1px solid #ccc;
 		box-shadow: 2px 2px 5px #ccc;
 
 		margin: 50px auto;
-		top: 100px;
-	}
-	
+		top: 50px;
+
+		.announce {
+			text-align: center;
+			font-size: 35px;
+			line-height: 35px;
+			height: 35px;
+			font-family: 'Microsoft Yahei UI';
+			color: #a2a2a2;
+			position: relative;
+			top: -225px;
+		}
+
+		.yTag {
+			position: absolute;
+			top: 39px;
+			
+			div {
+				width: 25px;
+				height: 12px;
+				font-size: 12px;
+				line-height: 12px;
+				text-align: center;
+				margin-bottom: 8px;
+			}
+		}
+
+		.xTag {
+			position: absolute;
+			left: 35px;
+			top: 345px;
+
+			div {
+				display: inline-block;
+				margin-right: 60px;
+				width: 40px;
+				height: 12px;
+				font-size: 12px;
+				line-height: 12px;
+				text-align: center;
+
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+
+		.yTag, .xTag {
+			div {
+				animation: opacity0To1 1s ease-out 1 both;
+			}
+		}
+	}	
 }

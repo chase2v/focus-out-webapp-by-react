@@ -29,3 +29,7 @@ html {
 @keyframes cardFly {
 	100% { transform: translateY(-500px);}
 }
+@keyframes opacity0To1 {
+	0% { opacity: 0 }
+	100% { opacity: 1 }
+}
