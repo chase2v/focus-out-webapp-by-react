@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 import AppFrame from '../component/appFrame';
-import Timer from '../container/timerWrapper';
+import Timer from '../component/timer/timer';
 import Statistic from '../component/statistic/statistic';
 import User from '../component/user/user';
 import Setting from '../component/setting/setting';

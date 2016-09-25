@@ -35,12 +35,28 @@
 		}
 	}
 
-	@at-root .timer-info {
+	@at-root .timerInfo {
 
 		position: absolute;
-		top: 125px;
+		top: 110px;
 		left: 500px;
 		width: 360px;
+
+		.timerSwitcher {
+
+			margin: 0 15px;
+			font-size: 15px;
+			line-height: 15px;
+			text-align: center;
+
+			div {
+				display: inline-block;
+
+				&:nth-child(2) {
+					width: 300px;
+				}
+			}
+		}
 
 		.info-card {
 			background-color: rgba(0, 0, 0, .9);
@@ -50,7 +66,7 @@
 			text-align: center;
 			margin: 15px;
 
-			&.today-card {
+			&.targetInfo-card {
 				clear: both;
 				padding: 10px;
 
@@ -67,7 +83,7 @@
 				}
 			}
 
-			&.time-card {
+			&.timerInfo-card {
 				width: 150px;
 				height: 210px;
 				float: left;

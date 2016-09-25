@@ -20,12 +20,33 @@ class ClockAnimation {
 	}
 
 	/**
+	 * 绘制背景
+	 * @return {[type]} [description]
+	 */
+	drawBg () {
+		let {ctx, center, r} = this.drawArg;
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = '#000';
+
+		// 开始绘制背景时钟
+		const drawCircle = (center, r, fillStyle) => {
+			ctx.beginPath();
+			ctx.fillStyle = fillStyle;
+			ctx.arc(center[0], center[1], r, 0, 2 * Math.PI);
+			ctx.fill();
+			ctx.stroke();
+		}
+		drawCircle(center, r[0], '#f00'); // 绘制大圆
+		drawCircle(center, r[1], '#fff'); // 绘制小圆
+	}
+
+	/**
 	 * 创建计时器
 	 * @return {[type]} [description]
 	 */
 	_createInterval (interval) {
 		this.currentInterval = setInterval(() => {
-			this.oneFrame(this.radius, false, this.color[0]);
+			this.oneFrame(false);
 			this.i++;
 			
 			if (this.addToLoop) {
@@ -63,10 +84,11 @@ class ClockAnimation {
 	 * 3.绘制大弧，绘制小圆
 	 * @return {[type]} [description]
 	 */
-	oneFrame (radius, direc, color) {
+	oneFrame (direc) {
+		// console.log(direc);
 		let {ctx, center, r} = this.drawArg,
-		     nextPos = this.currentPos - radius;
-		if (direc) { nextPos = this.currentPos + radius };
+		     nextPos = this.currentPos - this.radius;
+		if (direc) { nextPos = this.currentPos + this.radius };
 		if (nextPos < 0) { nextPos = 2 * Math.PI + nextPos}
 		else if (nextPos > 2 * Math.PI) { nextPos = nextPos - 2 * Math.PI};
 		this.currentPos = nextPos;
@@ -74,7 +96,7 @@ class ClockAnimation {
 		// 绘制
 		ctx.strokeStyle = '#000';
 		ctx.fillStyle = '#ccc';
-		if (direc) { ctx.fillStyle = color }
+		if (direc) { ctx.fillStyle = this.color }
 		ctx.beginPath();
 		ctx.moveTo(center[0], center[1]);
 		ctx.lineTo(center[0], center[1] - r[0]);
@@ -130,6 +152,7 @@ class ClockAnimation {
 	 */
 	stop () {
 		clearInterval(this.currentInterval);
+		this.clock.stop();
 		this._undo();
 	}
 
@@ -145,10 +168,9 @@ class ClockAnimation {
 		let interval = 1000 / this.i,
 		     totalRadius = 1.5 * Math.PI - this.currentPos;
 		if (totalRadius < 0) { totalRadius = 2 * Math.PI + totalRadius; }
-		let radius = totalRadius / this.i,
-		     that = this;
+		this.radius = totalRadius / this.i;
 		let thisInterval = setInterval( () => {
-			this.oneFrame(radius, true, that.color[0]);
+			this.oneFrame(true);
 			this.i--;
 
 			if (this.i === 0) {

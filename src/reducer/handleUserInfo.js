@@ -1,5 +1,7 @@
 import React from 'react';
-import INITDATA from '../action/actionTypes'
+
+import * as actionTypes from '../action/actionTypes';
+
 
 // 模拟的初始化数据
 const initUserInfo = {
@@ -299,19 +301,22 @@ const initUserInfo = {
 				{
 					id: 1,
 					name: 'study',
+					target: 5,
 					work: 1,
 					break: 1
 				},
 				{
 					id: 2,
 					name: 'reading',
+					target: 6,
 					work: 25,
 					break: 5
 				},
 				{
 					id: 3,
 					name: 'writing',
-					work: 25,
+					target: 7,
+					work: 30,
 					break: 5
 				}
 			],
@@ -319,7 +324,53 @@ const initUserInfo = {
 
 const handleUserInfo = (state = initUserInfo, action) => {
 	console.log('初始化数据前state为', state);
-	console.log('action为：', action);
+	// console.log('action为：', action);
+
+	switch (action.type) {
+		case actionTypes.MODIFYSTATISTIC :
+			let index = -1;
+			state.statistics.forEach( (v, i) => {
+				if (v.date === action.statistic.date) {
+					index = i;
+				}
+			});
+			if (index !== -1) {
+				let j = -1;
+				state.statistics[index].d.forEach( (v, i) => {
+					if (v.timerId === action.statistic.id) {
+						j = i;
+						v.playTimes += action.statistic.change;
+					}
+				});
+				if (j !== -1) {
+					return {
+						...state
+					}
+				} else {
+					state.statistics[index].d.push({
+						timerId: acion.statistic.id,
+						playTimes: 1
+					});
+					return {
+						...state
+					}
+				}
+			} else {
+				state.statistics.push({
+					date: action.statistic.date,
+					d: {
+						timerId: action.statistic.id,
+						playTimes: 1
+					}
+				});
+				console.log(state);
+				return {
+					...state
+				}
+			}
+			break;
+		default:
+	}
 
 	return state;
 }
