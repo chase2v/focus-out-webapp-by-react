@@ -37,7 +37,6 @@ class StatisticHandler {
 			let data = data30[i];
 			if (data[0]) {
 				if (data.length > 1) {
-					debugger
 					data.forEach((v) => {
 						data30Sorted[v.id][i] = v.playTimes;
 					});

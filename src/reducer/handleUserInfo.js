@@ -323,7 +323,7 @@ const initUserInfo = {
 		}
 
 const handleUserInfo = (state = initUserInfo, action) => {
-	console.log('初始化数据前state为', state);
+	// console.log('初始化数据前state为', state);
 	// console.log('action为：', action);
 
 	switch (action.type) {
@@ -369,6 +369,24 @@ const handleUserInfo = (state = initUserInfo, action) => {
 				}
 			}
 			break;
+		case actionTypes.ADDTIMERCARD :
+			action.timerCard.id = state.timers.length + 1;
+			state.timers.push(action.timerCard);
+			return {
+				...state
+			}
+			break;
+		case actionTypes.UPDATETIMERCARD :
+			state.timers[index - 1] = action.timerCard;
+			console.log('更新的卡片为：', state.timers[index - 1]);
+			return {
+				...state
+			}
+		case actionTypes.DELETETIMERCARD :
+			state.timers = action.timerCards;
+			return {
+				...state
+			}
 		default:
 	}
 

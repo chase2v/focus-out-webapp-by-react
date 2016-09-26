@@ -9,7 +9,7 @@ const User = () => {
 				<div className="avatar"><i className="iconfont icon-user"></i></div>
 				<p className="username">hajow</p>
 				<ul className="options">
-					<li><Link to="/statistic">Timers</Link></li>
+					<li><Link to="/timerCards">Timers</Link></li>
 					<li>切换用户</li>
 					<li>注销</li>
 				</ul>

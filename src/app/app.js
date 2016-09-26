@@ -9,6 +9,7 @@ import Statistic from '../component/statistic/statistic';
 import User from '../component/user/user';
 import Setting from '../component/setting/setting';
 import GraphCard from '../component/statistic/graphCard';
+import TimerCards from '../container/timerCardsWrapper';
 
 export class App extends Component {
 	render() {
@@ -21,6 +22,7 @@ export class App extends Component {
 						<Route path="user" component={ User }/>
 						<Route path="setting" component={ Setting }/>
 						<Route path="graph/:timerId" component={ GraphCard }/>
+						<Route path="timerCards" component={ TimerCards } />
 					</Route>
 				</Router>
 			</Provider>
