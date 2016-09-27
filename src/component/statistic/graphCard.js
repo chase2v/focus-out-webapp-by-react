@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import StatisticHandler from './StatisticHandler';
 
@@ -420,5 +421,11 @@ class GraphCard extends Component {
 		)
 	}
 }
+
+const graphCard = connect(state => {
+	return {
+		statistics: state.userInfo.statistics
+	}
+})(GraphCard);
 
 export default GraphCard;

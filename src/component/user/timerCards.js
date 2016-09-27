@@ -144,15 +144,19 @@ class TimerCards extends Component {
 	}
 
 	delete (id) {
-		this.props.timers.splice(id - 1, 1);
-		this.props.timers.forEach((v, i) => {
-			v.id = i + 1;
-		});
-		this.props.dispatch(deleteTimerCard(this.props.timers));
-		if(this.pointer === this.cardSum - 1) {
-			this.moveRight();
-		} 
-		this.forceUpdate();
+		if (id !== 1) {
+			this.props.timers.splice(id - 1, 1);
+			this.props.timers.forEach((v, i) => {
+				v.id = i + 1;
+			});
+			this.props.dispatch(deleteTimerCard(this.props.timers));
+			if(this.pointer === this.cardSum - 1) {
+				this.moveRight();
+			} 
+			this.forceUpdate();
+		} else {
+			alert('最后一张了，饶了小的吧。（提示：若要修改信息，可以直接点击修改。）');
+		}
 	}
 }
 

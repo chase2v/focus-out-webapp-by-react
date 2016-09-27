@@ -1,8 +1,8 @@
 import React from 'react';
+
 import * as actionTypes from '../action/actionTypes';
 
-// 模拟的初始计时器信息
-const initPlayInfo = {
+const initPlayInfoData = {
 				playState: 'stop',
 				playType: 'work',
 				currentTimer: 1,
@@ -12,11 +12,18 @@ const initPlayInfo = {
 				breakUnit: 'minutes'
 			}
 
-const handlePlayInfo = (state = initPlayInfo, action) => {
+
+const handlePlayInfo = (state = initPlayInfoData, action) => {
 	// console.log('处理计时器播放命令时state为：', state);
 	// console.log('action为：', action);
 
 	switch (action.type) {
+		case actionTypes.INITPLAYINFO :
+			state = action.initData;
+			console.log(state);
+			return {
+				...state
+			}
 		case actionTypes.SWITCHPLAYSTATE :
 			state.playState = action.nextPlayState;
 			return {

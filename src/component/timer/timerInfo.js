@@ -8,8 +8,9 @@ import updateTime from '../../action/updateTime';
 
 class TimerInfo extends Component {
 
-	componentWillMount () {
-		if (this.props.playInfo.playState === 'stop') {
+	componentDidUpdate() {
+		if (this.props.playInfo.work === 0 && this.props.playInfo.playState === 'stop') {
+			console.log('强制刷新');
 			this.props.dispatch( updateTime({
 				work: this.props.timerInfos[this.props.playInfo.currentTimer - 1].work,
 				break: this.props.timerInfos[this.props.playInfo.currentTimer - 1].break

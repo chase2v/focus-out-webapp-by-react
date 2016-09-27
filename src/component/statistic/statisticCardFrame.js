@@ -49,27 +49,11 @@ class StatisticCardFrame extends Component {
 	render () {
 
 		// 模拟数据
-		let mockData = [
-			{
-				id: 1,
-				name: 'study',
-				iconClass: 'icon-study'
-			},
-			{
-				id: 2,
-				name: 'writing',
-				iconClass: 'icon-writing'
-			},
-			{
-				id: 3,
-				name: 'reading',
-				iconClass: 'icon-book'
-			}
-		];
+		let data = this.props.timers;
 
 		this.pointer = 0;
 		let statisticCards = [];
-		for (let i = 0, d; d = mockData[i++]; ) {
+		for (let i = 0, d; d = data[i++]; ) {
 			statisticCards.push(
 				<StatisticCard key={ i } data={ d } focus={ i === this.pointer+1 ? true : false } />
 			);
