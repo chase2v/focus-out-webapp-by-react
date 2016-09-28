@@ -370,8 +370,8 @@ class AppFrame extends Component {
 		window.onbeforeunload = function () {
 			console.log('即将关闭')
 			this.db.transaction('userInfo','readwrite').objectStore('userInfo').put(this.props.userInfo,'userInfo');
-			this.db.transaction('playInfo','readwrite').objectStore('playInfo').put(this.props.playInfo,'playInfo');
-			debugger
+			// this.db.transaction('playInfo','readwrite').objectStore('playInfo').put(this.props.playInfo,'playInfo');
+			// debugger
 		}.bind(this);
 	}
 

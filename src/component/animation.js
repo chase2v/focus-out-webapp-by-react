@@ -87,16 +87,19 @@ class ClockAnimation {
 	oneFrame (direc) {
 		// console.log(direc);
 		let {ctx, center, r} = this.drawArg,
-		     nextPos = this.currentPos - this.radius;
-		if (direc) { nextPos = this.currentPos + this.radius };
+		//      nextPos = this.currentPos - this.radius;
+		// if (direc) { nextPos = this.currentPos + this.radius };
+			nextPos = 1.5 * Math.PI - this.radius * this.i;
+		if (direc) { nextPos = this.currentPos + this.radius; }
 		if (nextPos < 0) { nextPos = 2 * Math.PI + nextPos}
 		else if (nextPos > 2 * Math.PI) { nextPos = nextPos - 2 * Math.PI};
 		this.currentPos = nextPos;
 
+
 		// 绘制
 		ctx.strokeStyle = '#000';
 		ctx.fillStyle = '#ccc';
-		if (direc) { ctx.fillStyle = this.color }
+		if (direc) { ctx.fillStyle = this.color[0] }
 		ctx.beginPath();
 		ctx.moveTo(center[0], center[1]);
 		ctx.lineTo(center[0], center[1] - r[0]);

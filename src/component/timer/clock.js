@@ -12,6 +12,25 @@ import createAnimationSingleton from '../animation';
 class Clock extends Component {
 
 	componentDidMount () {
+
+		document.addEventListener('visibilitychange', function (event) {
+			// console.log(document.visibilityState);
+			let state = document.visibilityState;
+			if (state === 'hidden') {
+				this.hiddenTime = +new Date;
+				// console.log(this.hiddenTime);
+			} else if (state === 'visible') {} {
+				this.showTime = +new Date;
+				// console.log(this.showTime);
+				let differ = Math.round((this.showTime - this.hiddenTime )/ 50);
+
+				if (this.props.playInfo.playState === 'play') {
+					// console.log('调整了时间', differ);
+					this.animation.i = this.animation.i + differ;
+				}
+			}
+			console.log(this.animation.i)
+		}.bind(this));
 		
 		let cvs = this.refs.cvs,
 		     ctx = cvs.getContext('2d');
