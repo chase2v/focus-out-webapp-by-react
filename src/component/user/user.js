@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { Link } from 'react-router'
+
+import LoginFrame from './loginFrame';
 
 const User = () => {
 	return (
@@ -10,10 +11,10 @@ const User = () => {
 				<p className="username">hajow</p>
 				<ul className="options">
 					<li><Link to="/timerCards">Timers</Link></li>
-					<li>切换用户</li>
 					<li>注销</li>
 				</ul>
 			</div>
+			<LoginFrame />
 		</div>
 	)
 }

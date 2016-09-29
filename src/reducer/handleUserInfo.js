@@ -5,6 +5,7 @@ import * as actionTypes from '../action/actionTypes';
 const initUserInfoData = {
 			currentUser: 1,
 			username: 'hajow',
+			interfaceState: 'login',
 			statistics: [
 				{
 					date: 1471622400000,
@@ -96,6 +97,11 @@ const handleUserInfo = (state = initUserInfoData, action) => {
 			}
 		case actionTypes.DELETETIMERCARD :
 			state.timers = action.timerCards;
+			return {
+				...state
+			}
+		case actionTypes.UPDATEINTERFACESTATE :
+			state.interfaceState = action.newState;
 			return {
 				...state
 			}

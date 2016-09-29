@@ -36,3 +36,10 @@ html {
 @keyframes scaleCard {
 	100% { transform: scale(1.3) translateY(0); }
 }
+@keyframes loading {
+	0% {}
+	25% { transform: rotate(45deg) scale(.5) }
+	50% { transform: rotate(90deg) scale(1); border-radius: 50%;}
+	75% { transform: rotate(135deg) scale(.5) }
+	100% { transform: rotate(180deg) scale(1) }
+}

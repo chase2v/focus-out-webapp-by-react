@@ -20,6 +20,7 @@ class AppFrame extends Component {
 		const initUserInfoData = {
 					currentUser: 1,
 					username: 'hajow',
+					interfaceState: 'login',
 					statistics: [
 						{
 							date: 1471622400000,
