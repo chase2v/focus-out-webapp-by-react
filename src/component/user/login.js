@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import sha1 from 'sha1';
 
 import { connect  } from 'react-redux';
 import updateInterfaceState from '../../action/updateInterfaceState';
@@ -38,14 +39,14 @@ class Login extends Component {
 						<i ref="usernameCheck" className="iconfont icon-check"></i>
 						<i ref="usernameWrong" className="iconfont icon-wrong"></i>
 						<br/>
-						<input onChange={ (event) => this.validateUsername(event) }/>
+						<input ref="username" onChange={ (event) => this.validateUsername(event) }/>
 					</label><br/>
 					<label className="password">
 						Password
 						<i ref="passwordCheck" className="iconfont icon-check"></i>
 						<i ref="passwordWrong" className="iconfont icon-wrong"></i>
 						<br/>
-						<input onChange={ (event) => this.validatePassword(event) }/>
+						<input ref="password"  onChange={ (event) => this.validatePassword(event) }/>
 					</label><br/>
 					<button onClick={ () => this.login() }>{ this.map[this.props.state].btnText }</button>
 					<p onClick={ () => this.switch() }>{ this.map[this.props.state].tip }</p>
@@ -66,22 +67,61 @@ class Login extends Component {
 		this.props.dispatch(updateInterfaceState(state));
 	}
 
+	/**
+	 * 登录和注册按钮逻辑
+	 * @return {[type]} [description]
+	 */
 	login () {
 		event.preventDefault();
 		if (this.props.state === 'login') {
 			this.refs.loading.style.display = 'block';
-			setTimeout(() => {
-				this.props.disappear();
-			}, 3000);
+
+			// 发送 post 请求，加密密码
+			let username = this.refs.username.value;
+			let password = this.refs.password.value;
+			let secret = sha1(password);
+			let xhr = new XMLHttpRequest();
+			xhr.open('POST', 'http://localhost:1234');
+			xhr.send('username='+username+'&password='+secret+'&type=login');
+			xhr.onreadystatechange = () => {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					if (xhr.responseText === '登录成功') {
+						this.props.disappear();
+					} else if (xhr.responseText === '登录失败') {
+						alert('登录失败');
+						this.refs.loading.style.display = 'none';
+					}
+				}
+			}
 		}
 		if (this.props.state === 'signup' && this.validateResult.username + this.validateResult.password === 2 ) {
 			this.refs.loading.style.display = 'block';
-			setTimeout(() => {
-				this.props.disappear();
-			}, 3000);
+
+			// 发送 post 请求，加密密码
+			let username = this.refs.username.value;
+			let password = this.refs.password.value;
+			let secret = sha1(password);
+			let xhr = new XMLHttpRequest();
+			xhr.open('POST', 'http://localhost:1234');
+			xhr.send('username='+username+'&password='+secret+'&type=signup');
+			xhr.onreadystatechange = () => {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					if (xhr.responseText === '创建成功') {
+						this.props.disappear();
+					} else if (xhr.responseText === '创建失败') {
+						alert('创建失败');
+						this.refs.loading.style.display = 'none';
+					}
+				}
+			}
 		}
 	}
 
+	/**
+	 * 验证注册的用户名
+	 * @param  {[type]} event [description]
+	 * @return {[type]}       [description]
+	 */
 	validateUsername (event) {
 		if (this.props.state === 'signup') {
 			let value = event.target.value;
@@ -104,6 +144,11 @@ class Login extends Component {
 		}
 	}
 
+	/**
+	 * 验证注册的密码
+	 * @param  {[type]} event [description]
+	 * @return {[type]}       [description]
+	 */
 	validatePassword (event) {
 		if (this.props.state === 'signup') {
 			let value = event.target.value;
