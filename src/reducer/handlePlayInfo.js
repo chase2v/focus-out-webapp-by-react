@@ -12,55 +12,39 @@ const initPlayInfoData = {
 				breakUnit: 'minutes'
 			}
 
-
 const handlePlayInfo = (state = initPlayInfoData, action) => {
-	// console.log('处理计时器播放命令时state为：', state);
-	// console.log('action为：', action);
-
 	switch (action.type) {
 		case actionTypes.INITPLAYINFO :
-			state = action.initData;
-			console.log(state);
 			return {
-				...state
+				...action.initData
 			}
 		case actionTypes.SWITCHPLAYSTATE :
-			state.playState = action.nextPlayState;
 			return {
-				...state
+				...state,
+				playState: action.nextPlayState
 			}
-			break;
 		case actionTypes.SWITCHPLAYTYPE:
-			if ( state.playType === 'work' ) {
-				state.playType = 'break'
-			} else if ( state.playType === 'break' ) {
-				state.playType = 'work'
-			}
 			return {
-				...state
+				...state,
+				playType: action.playType
 			}
-			break;
 		case actionTypes.UPDATETIME :
-			if (action.time) {
-				state = Object.assign(state, action.time);
-			}
 			return {
-				...state
+				...state,
+				...action.time
 			}
-			break;
 		case actionTypes.UPDATEUNIT :
-			state = Object.assign(state, action.unit);
 			return {
-				...state
+				...state,
+				...action.unit
 			}
-			break;
 		case actionTypes.SWITCHTIMER :
-			state.currentTimer = action.nextTimer;
 			return {
-				...state
+				...state,
+				currentTimer: action.nextTimer
 			}
-			break;
 		default:
+			return state;
 	}
 	
 	return state;

@@ -117,11 +117,11 @@ class Clock extends Component {
 		let dispatch = this.props.dispatch;
 		this.refs.playbutton.style.display = 'block';
 		this.refs.buttonGroup.style.display = 'none';
+		this.record();
 		dispatch(switchPlayState('stop'));
 		dispatch(switchPlayType());
 		dispatch(updateTime({work:this.props.timers[this.props.playInfo.currentTimer - 1].work,break:this.props.timers[this.props.playInfo.currentTimer - 1].break}));
 		dispatch(updateUnit({workUnit:'minutes',breakUnit:'minutes'}));
-		this.record();
 	}
 
 	play () {

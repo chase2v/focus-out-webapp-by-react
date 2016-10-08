@@ -30,82 +30,38 @@ const initUserInfoData = {
 		}
 
 const handleUserInfo = (state = initUserInfoData, action) => {
-	// console.log('初始化数据前state为', state);
-	// console.log('action为：', action);
-
 	switch (action.type) {
 		case actionTypes.INITUSERINFO :
-			state = action.initData;
-			console.log(state);
 			return {
-				...state
+				...action.initData
 			}
 		case actionTypes.MODIFYSTATISTIC :
-			let index = -1;
-			state.statistics.forEach( (v, i) => {
-				if (v.date === action.statistic.date) {
-					index = i;
-				}
-			});
-			if (index !== -1) {
-				let j = -1;
-				state.statistics[index].d.forEach( (v, i) => {
-					if (v.timerId === action.statistic.id) {
-						j = i;
-						v.playTimes += action.statistic.change;
-					}
-				});
-				if (j !== -1) {
-					return {
-						...state
-					}
-				} else {
-					state.statistics[index].d.push({
-						timerId: acion.statistic.id,
-						playTimes: 1
-					});
-					return {
-						...state
-					}
-				}
-			} else {
-				state.statistics.push({
-					date: action.statistic.date,
-					d: {
-						timerId: action.statistic.id,
-						playTimes: 1
-					}
-				});
-				console.log(state);
-				return {
-					...state
-				}
+			return {
+				...state,
+				statistics: action.statistics
 			}
-			break;
 		case actionTypes.ADDTIMERCARD :
-			action.timerCard.id = state.timers.length + 1;
-			state.timers.push(action.timerCard);
 			return {
-				...state
+				...state,
+				timers: action.timers
 			}
-			break;
 		case actionTypes.UPDATETIMERCARD :
-			state.timers[index - 1] = action.timerCard;
-			console.log('更新的卡片为：', state.timers[index - 1]);
 			return {
-				...state
+				...state,
+				timers: action.timers
 			}
 		case actionTypes.DELETETIMERCARD :
-			state.timers = action.timerCards;
 			return {
-				...state
+				...state,
+				timers: action.timerCards
 			}
 		case actionTypes.UPDATEINTERFACESTATE :
-			state.interfaceState = action.newState;
 			return {
-				...state
+				...state,
+				interfaceState: action.newState
 			}
 		default:
+			return state;
 	}
 
 	return state;
