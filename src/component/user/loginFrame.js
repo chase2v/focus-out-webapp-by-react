@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 
 import Login from './login';
 
-class LoginFrame extends Component {
+export default class LoginFrame extends Component {
+	
+	disappear () {
+		this.refs.frame.style.visibility = 'hidden';
+	}
+
 	render () {
 		return (
 			<div className="login-frame" ref="frame">
@@ -10,10 +15,4 @@ class LoginFrame extends Component {
 			</div>
 		)
 	}
-
-	disappear () {
-		this.refs.frame.style.visibility = 'hidden';
-	}
 }
-
-export default LoginFrame;

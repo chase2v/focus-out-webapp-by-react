@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-class StatisticCard extends Component{
+export default class StatisticCard extends Component{
 
 	clickHandler (e) {
 		let path = `/graph/${ this.refs.card.id }`;
 		this.context.router.push(path);
-		// this.refs.statisticCard.className += ' card-top-out';
 	}
 
 	render () {
@@ -21,5 +20,3 @@ class StatisticCard extends Component{
 StatisticCard.contextTypes = {
 	router: React.PropTypes.object
 }
-
-export default StatisticCard;

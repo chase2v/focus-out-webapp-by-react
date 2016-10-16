@@ -1,14 +1,13 @@
 import React from 'react';
 
-class StatisticHandler {
-
+export default class StatisticHandler {
 	/**
 	 * 处理数据：
 	 * 1.取出近30天的数据
 	 * 2.分类
 	 * 3.返回
-	 * @param  {[type]} data [description]
-	 * @return {[type]}      [description]
+	 * @param  data : 所有数据
+	 * @param  timerId : 计时器 id
 	 */
 	static process (data, timerId) {
 		// 数据重排，最近的数据在 0
@@ -53,9 +52,7 @@ class StatisticHandler {
 		data30Sorted.forEach((v) => {
 			v.reverse();
 		});
-		console.log(data30Sorted);
+
 		return data30Sorted[timerId];
 	}
 }
-
-export default StatisticHandler;

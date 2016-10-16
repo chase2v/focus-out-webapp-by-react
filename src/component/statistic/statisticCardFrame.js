@@ -4,6 +4,12 @@ import StatisticCard from './statisticCard';
 
 class StatisticCardFrame extends Component {
 
+	constructor () {
+		super();
+
+		this.pointer = 0;
+	}
+
 	moveLeft () {
 		let cardBox = this.refs.cardBox;
 		let initLeft = parseFloat(window.getComputedStyle(cardBox).left);
@@ -47,11 +53,9 @@ class StatisticCardFrame extends Component {
 	}
 
 	render () {
-
-		// 模拟数据
+		// 获取数据
 		let data = this.props.timers;
 
-		this.pointer = 0;
 		let statisticCards = [];
 		for (let i = 0, d; d = data[i++]; ) {
 			statisticCards.push(
@@ -62,16 +66,20 @@ class StatisticCardFrame extends Component {
 
 		return (
 			<div className="frame-statistic-card">
-				<div className="button" onClick={ () => this.moveLeft() }><i className="iconfont icon-left"></i></div>
+				<div className="button" onClick={ () => this.moveRight() }><i className="iconfont icon-left"></i></div>
 				<div className="card-show-frame">
 					<div className="card-box" ref="cardBox">
 						{ statisticCards }
 					</div>
 				</div>
-				<div className="button" onClick={ () => this.moveRight() }><i className="iconfont icon-right"></i></div>
+				<div className="button" onClick={ () => this.moveLeft() }><i className="iconfont icon-right"></i></div>
 			</div>
 		)
 	}
+}
+
+StatisticCardFrame.propTypes = {
+	timers: React.PropTypes.array
 }
 
 export default StatisticCardFrame;

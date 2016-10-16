@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-class AddCard extends Component {
+export default class AddCard extends Component {
 	render () {
-
 		return (
 			<div className="addCard" ref="addCard">
 				<div className="plus" onClick={ this.props.addFunc }><i className="iconfont icon-plus"></i></div>
@@ -21,4 +20,8 @@ class AddCard extends Component {
 	}
 }
 
-export default AddCard;
+AddCard.propTypes = {
+	addFunc: React.PropTypes.func,
+	reject: React.PropTypes.func,
+	resolve: React.PropTypes.func
+}

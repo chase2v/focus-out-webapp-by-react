@@ -6,307 +6,20 @@ import StatisticHandler from './StatisticHandler';
 class GraphCard extends Component {
 
 	componentWillMount () {
-		// 模拟取回数据
-		this.statistics = [
-			{
-				date: 1471622400000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 10
-					}
-				]
-			},
-			{
-				date: 1471708800000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 11
-					}
-				]
-			},
-			{
-				date: 1471795200000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 12
-					}
-				]
-			},
-			{
-				date: 1471881600000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 13
-					}
-				]
-			},
-			{
-				date: 1471968000000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 14
-					}
-				]
-			},
-			{
-				date: 1472054400000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 15
-					}
-				]
-			},
-			{
-				date: 1472140800000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 14
-					}
-				]
-			},
-			{
-				date: 1472227200000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 13
-					}
-				]
-			},
-			{
-				date: 1472313600000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 12
-					}
-				]
-			},
-			{
-				date: 1472400000000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 11
-					}
-				]
-			},
-			{
-				date: 1472486400000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 10
-					}
-				]
-			},
-			{
-				date: 1472572800000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 11
-					}
-				]
-			},
-			{
-				date: 1472659200000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 12
-					}
-				]
-			},
-			{
-				date: 1472745600000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 13
-					}
-				]
-			},
-			{
-				date: 1472832000000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 14
-					}
-				]
-			},
-			{
-				date: 1472918400000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 15
-					}
-				]
-			},
-			{
-				date: 1473004800000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 14
-					}
-				]
-			},
-			{
-				date: 1473091200000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 13
-					}
-				]
-			},
-			{
-				date: 1473177600000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 12
-					}
-				]
-			},
-			{
-				date: 1473264000000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 11
-					}
-				]
-			},
-			{
-				date: 1473350400000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 10
-					}
-				]
-			},
-			{
-				date: 1473436800000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 11
-					}
-				]
-			},
-			{
-				date: 1473523200000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 12
-					}
-				]
-			},
-			{
-				date: 1473609600000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 13
-					}
-				]
-			},
-			{
-				date: 1473696000000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 14
-					}
-				]
-			},
-			{
-				date: 1473782400000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 15
-					}
-				]
-			},
-			{
-				date: 1473868800000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 14
-					}
-				]
-			},
-			{
-				date: 1473955200000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 13
-					}
-				]
-			},
-			{
-				date: 1474041600000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 12
-					}
-				]
-			},
-			{
-				date: 1474128000000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 11
-					}
-				]
-			},
-			{
-				date: 1474214400000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 10
-					}
-				]
-			},
-			{
-				date: 1474300800000,
-				d: [
-					{
-						timerId: 1,
-						playTimes: 11
-					}
-				]
-			}
-		];
-		this.statistics = StatisticHandler.process(this.statistics, this.props.params.timerId);
+		// 初始化数据，若使用 mock 的数据，可以在这里更改
+		this.statistics = StatisticHandler.process(this.props.statistics, this.props.params.timerId);
 	}
 
 	componentDidMount () {
+		// 初始化画布
 		let cvs = this.refs.cvs,
 			ctx = cvs.getContext('2d');
 		cvs.width = 700;
 		cvs.height = 400;
 		ctx.translate(25, 25);
 
+		// 如果有数据，展示数据
+		// 如果没有，则提示 “还没有数据”
 		if (this.statistics) {
 			let i = 0;
 			let interval = setInterval(() => {
@@ -327,7 +40,8 @@ class GraphCard extends Component {
 
 	/**
 	 * 绘制数据线
-	 * @return {[type]} [description]
+	 * @param  ctx : 画布背景
+	 * @param  per : 进度百分比
 	 */
 	drawAnimation (ctx, per) {
 		ctx.clearRect(0, 0, 700, 400);
@@ -391,6 +105,11 @@ class GraphCard extends Component {
 		}
 	}
 
+	/**
+	 * 绘制曲线
+	 * @param  ctx : 画布背景
+	 * @param  per : 进度百分比
+	 */
 	drawCurve (ctx, per) {
 		ctx.fillStyle = 'rgba(253, 109, 109, .6)';
 		ctx.strokeStyle = '#000';
@@ -422,10 +141,14 @@ class GraphCard extends Component {
 	}
 }
 
+GraphCard.propTypes = {
+	statistics: React.PropTypes.array
+}
+
 const graphCard = connect(state => {
 	return {
 		statistics: state.userInfo.statistics
 	}
 })(GraphCard);
 
-export default GraphCard;
+export default graphCard;

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Setting = React.createClass({
-
 	/**
 	 * 点击处理函数
 	 * 1.根据状态判断是正面还是反面

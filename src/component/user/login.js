@@ -8,14 +8,11 @@ class Login extends Component {
 
 	constructor () {
 		super();
+
 		this.validateResult  = {
 			username: 0,
 			password: 0,
 		}
-	}
-
-	render () {
-
 		this.map = {
 			login: {
 				title: '登录',
@@ -28,32 +25,6 @@ class Login extends Component {
 				tip: '已经有账户？'
 			}
 		}
-
-
-		return (
-			<div className="login">
-				<h2>{ this.map[this.props.state].title }</h2>
-				<form>
-					<label className="username">
-						Username
-						<i ref="usernameCheck" className="iconfont icon-check"></i>
-						<i ref="usernameWrong" className="iconfont icon-wrong"></i>
-						<br/>
-						<input ref="username" onChange={ (event) => this.validateUsername(event) }/>
-					</label><br/>
-					<label className="password">
-						Password
-						<i ref="passwordCheck" className="iconfont icon-check"></i>
-						<i ref="passwordWrong" className="iconfont icon-wrong"></i>
-						<br/>
-						<input ref="password"  onChange={ (event) => this.validatePassword(event) }/>
-					</label><br/>
-					<button onClick={ () => this.login() }>{ this.map[this.props.state].btnText }</button>
-					<p onClick={ () => this.switch() }>{ this.map[this.props.state].tip }</p>
-				</form>
-				<div ref="loading" className="loading"></div>
-			</div>
-		)
 	}
 
 	/**
@@ -68,7 +39,7 @@ class Login extends Component {
 	}
 
 	/**
-	 * 登录和注册按钮逻辑
+	 * 登录和注册的逻辑
 	 * @return {[type]} [description]
 	 */
 	login () {
@@ -146,8 +117,7 @@ class Login extends Component {
 
 	/**
 	 * 验证注册的密码
-	 * @param  {[type]} event [description]
-	 * @return {[type]}       [description]
+	 * @param  event
 	 */
 	validatePassword (event) {
 		if (this.props.state === 'signup') {
@@ -170,6 +140,36 @@ class Login extends Component {
 			}
 		}
 	}
+
+	render () {
+		return (
+			<div className="login">
+				<h2>{ this.map[this.props.state].title }</h2>
+				<form>
+					<label className="username">
+						Username
+						<i ref="usernameCheck" className="iconfont icon-check"></i>
+						<i ref="usernameWrong" className="iconfont icon-wrong"></i>
+						<br/>
+						<input ref="username" onChange={ (event) => this.validateUsername(event) }/>
+					</label><br/>
+					<label className="password">
+						Password
+						<i ref="passwordCheck" className="iconfont icon-check"></i>
+						<i ref="passwordWrong" className="iconfont icon-wrong"></i>
+						<br/>
+						<input ref="password"  onChange={ (event) => this.validatePassword(event) }/>
+					</label><br/>
+					<button onClick={ () => this.login() }>{ this.map[this.props.state].btnText }</button>
+					<p onClick={ () => this.switch() }>{ this.map[this.props.state].tip }</p>
+				</form>
+				<div ref="loading" className="loading"></div>
+			</div>
+		)
+	}
+}
+Login.propTypes = {
+	state: React.PropTypes.string
 }
 
 let login = connect( state => {

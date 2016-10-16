@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 
 import updateTimerCard from '../../action/updateTimerCard';
 
-class TimerCard extends Component {
+export default class TimerCard extends Component {
 
 	constructor () {
 		super();
+
 		this.isChanging = 0;
 		this.i = 0;
 	}
 
+	/**
+	 * 修改计时器
+	 */
 	updateTimerCard() {
 		this.i++;
 		let interval;
@@ -57,4 +61,9 @@ class TimerCard extends Component {
 	}
 }
 
-export default TimerCard;
+TimerCard.propTypes = {
+	info: React.PropTypes.object,
+	focus: React.PropTypes.bool,
+	delete: React.PropTypes.func,
+	dispatch: React.PropTypes.func
+}

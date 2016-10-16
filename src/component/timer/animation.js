@@ -6,7 +6,6 @@ var createAnimationSingleton = (function () {
 			animation = new ClockAnimation();
 			i++;
 		}
-		console.log(i);
 		return animation;
 	}
 })();
@@ -85,7 +84,6 @@ class ClockAnimation {
 	 * @return {[type]} [description]
 	 */
 	oneFrame (direc) {
-		// console.log(direc);
 		let {ctx, center, r} = this.drawArg,
 		//      nextPos = this.currentPos - this.radius;
 		// if (direc) { nextPos = this.currentPos + this.radius };
@@ -94,7 +92,6 @@ class ClockAnimation {
 		if (nextPos < 0) { nextPos = 2 * Math.PI + nextPos}
 		else if (nextPos > 2 * Math.PI) { nextPos = nextPos - 2 * Math.PI};
 		this.currentPos = nextPos;
-
 
 		// 绘制
 		ctx.strokeStyle = '#000';
@@ -213,15 +210,6 @@ class ClockAnimation {
 		this.i = 0;
 		this.clock.complete();
 	}
-
-	save() {
-
-	}
-
-	restore() {
-
-	}
-
 }
 
 export default createAnimationSingleton;

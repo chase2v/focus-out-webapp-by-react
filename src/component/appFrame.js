@@ -8,6 +8,7 @@ import initUserInfo from '../action/initUserInfo';
 class AppFrame extends Component {
 
 	componentWillMount () {
+		// 用来初始化的数据
 		const initPlayInfoData = {
 						playState: 'stop',
 						playType: 'work',
@@ -339,6 +340,9 @@ class AppFrame extends Component {
 					],
 				}
 
+		// 数据的初始化
+		// 从本地数据库获取数据，若没有则初始化数据库
+		// 最后更新 store
 		let openIDBRequest = window.indexedDB.open('focusOut');
 		openIDBRequest.onerror = (event) => { console.log(event.target.errorCode)}
 		openIDBRequest.onsuccess = (event) => { 
@@ -371,8 +375,6 @@ class AppFrame extends Component {
 		window.onbeforeunload = function () {
 			console.log('即将关闭')
 			this.db.transaction('userInfo','readwrite').objectStore('userInfo').put(this.props.userInfo,'userInfo');
-			// this.db.transaction('playInfo','readwrite').objectStore('playInfo').put(this.props.playInfo,'playInfo');
-			// debugger
 		}.bind(this);
 	}
 
@@ -386,6 +388,11 @@ class AppFrame extends Component {
 			</div>
 		);
 	}
+}
+
+AppFrame.propTypes = {
+	playInfo: React.PropTypes.object,
+	userInfo: React.PropTypes.object
 }
 
 const appFrame = connect(state => {

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import StatisticCardFrame from './statisticCardFrame'
 import GraphCard from './graphCard';
 
-const Statistic = React.createClass({
+class Statistic extends Component {
 	render () {
 		return (
 			<div className="statistic">
@@ -12,7 +12,11 @@ const Statistic = React.createClass({
 			</div>
 		)
 	}
-});
+}
+
+Statistic.propTypes = {
+	timers: React.PropTypes.array
+}
 
 const statistic = connect(state => {
 	return {

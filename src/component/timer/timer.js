@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-import Clock from '../../container/clockWrapper';
-import TimerInfo from '../../container/timerInfoWrapper';
+import Clock from './clock';
+import TimerInfo from './timerInfo';
 
 export default class Timer extends Component {
-
 	render () {
 		return (	
 			<div className="timer">
@@ -13,5 +12,4 @@ export default class Timer extends Component {
 			</div>
 		)
 	}
-
 }
